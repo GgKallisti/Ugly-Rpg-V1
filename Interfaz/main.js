@@ -323,6 +323,7 @@ function Gitana() {
 function Taberna() {
 
     stage = "T"
+    imagen.src = "Imagenes/TavernaAll.png"
     divlugares.style.display = "none"
     divlugares.style.visibility = "hidden"
     taberna.style.visibility = "visible"
@@ -361,7 +362,6 @@ function Ataques() {
 
     switch (Pj.nombre) {
         case "Mago":
-
             botonG.addEventListener('mouseover', (event) => {
                 if (en.nombre == "Goblin") {
                     imagen.src = "Imagenes/BosqueMHover.png"
@@ -372,14 +372,13 @@ function Ataques() {
             })
             botonH.addEventListener('mouseover', (event) => {
                 if (en.nombre == "Goblin") {
-                    imagen.src = "Imagenes/BosqueMHuir-hover.png"
+                    imagen.src = "Imagenes/HuirMBosque.png"
                 }
                 else {
-                    imagen.src = "Imagenes/CuevaMHover-Huir.png"
+                    imagen.src = "Imagenes/HuirMCueva.png"
                 }
             })
             botonG.addEventListener('click', (event) => {
-
                 Pj.hp = atk(Pj.hp, en.ataque)
                 en.hp = atk(en.hp, Pj.ataque)
 
@@ -470,9 +469,9 @@ function Ataques() {
             })
 
             botonH.addEventListener('click', (event) => {
-                Pj.hp = atk(Pj.hp, en.ataque)
+        
                 Toastify({
-                    text: "No podes Huir, No sos un Ninja! ",
+                    text: "Usas tu Scroll para transportarte a la Taberna...",
                     duration: 4000,
                     newWindow: true,
                     close: true,
@@ -486,23 +485,18 @@ function Ataques() {
                     className: "info",
                     style: { background: "linear-gradient(to right, #00b09b, #96c93d)", }
                 }).showToast();
-
-
-                Toastify({
-                    text: enombre + " te ha atacado! Te quedan " + pjv + " de vida! ",
-                    duration: 4000,
-                    newWindow: true,
-                    close: true,
-                    gravity: "top",
-                    position: "left",
-                    stopOnFocus: true,
-                    offset: {
-                        x: 150, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
-                        y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                    },
-                    className: "info",
-                    style: { background: "linear-gradient(to right, #00b09b, #96c93d)", }
-                }).showToast();
+                stage = "T"
+                imagen.src = "Imagenes/TavernaAll.png"
+                ataqueS.style.display = "none"
+                taberna.style.visibility = "visible"
+                taberna.classList.remove('hidden')
+                botonQ.innerText = "Comprar"
+                botonW.innerText = "Apostar"
+                botonE.innerText = "Gitana"
+                taberna.style.display = "grid"
+                taberna.style.gridTemplateColumns = " repeat(3, 400px)"
+                taberna.style.gridTemplateRows = "50 px"
+                Taberna()   
             })
             break;
 
@@ -615,6 +609,10 @@ function Ataques() {
                 }
             })
             botonH.addEventListener('click', (event) => {
+                if(en.nombre == "Goblin"){
+                    imagen.src = "Imagenes/HuirGBosque.png"
+                }
+                else {imagen.src = "Imagenes/HuirGCueva.png"}
                 ataqueS.style.visibility = "hidden"
                 Toastify({
                     text: "Fuiste derrotado por una avalancha de piedras, para que semejante espada si no la ibas a usar?",
@@ -632,7 +630,7 @@ function Ataques() {
                     style: { background: "linear-gradient(to right, #00b09b, #96c93d)", }
                 }).showToast();
 
-            }); break
+            }); break;
 
         case "Ninja":
 
@@ -744,7 +742,10 @@ function Ataques() {
                 }
             })
             botonH.addEventListener('click', (event) => {
-
+                if(en.nombre == "Goblin"){
+                    imagen.src = "Imagenes/HuirNBosque.png"
+                } else {imagen.src = "Imagenes/HuirNCueva.png"
+                }
                 Toastify({
                     text: "Usas tu Bomba de humo para evadir el ataque y sigues tu camino a la siguiente ciudad... ",
                     duration: 4000,
@@ -761,7 +762,7 @@ function Ataques() {
                     style: { background: "linear-gradient(to right, #00b09b, #96c93d)", }
                 }).showToast();
 
-                imagen.src = "Imagenes/.png"
+                
             })
     }
 }
@@ -795,19 +796,19 @@ function Lugares() {
             localStorage.setItem("enemy", JSON.stringify(Orco))
             enemy = JSON.parse(localStorage.getItem("enemy"))
             imagen.src = "Imagenes/CuevaM.png"
-            Ataques()
+            Ataques(selectedPj,enemy)
         })
 
         botonb.addEventListener('click', (event) => {
             imagen.src = "Imagenes/TavernaAll.png"
-            Taberna()
+            Taberna(selectedPj)
         })
 
         botonc.addEventListener('click', (event) => {
             imagen.src = "Imagenes/BosqueM.png"
             localStorage.setItem("enemy", JSON.stringify(Goblin))
             enemy = JSON.parse(localStorage.getItem("enemy"))
-            Ataques()
+            Ataques(selectedPj,enemy)
         })
     }
     else if (selectedPj.nombre == "Guerrero") {
@@ -824,18 +825,18 @@ function Lugares() {
             imagen.src = "Imagenes/CuevaG.png"
             localStorage.setItem("enemy", JSON.stringify(Orco))
             enemy = JSON.parse(localStorage.getItem("enemy"))
-            Ataques()
+            Ataques(selectedPj,enemy)
         })
 
         botonb.addEventListener('click', (event) => {
             imagen.src = "Imagenes/TavernaAll.png"
-            Taberna()
+            Taberna(selectedPj)
         })
         botonc.addEventListener('click', (event) => {
             imagen.src = "Imagenes/BosqueG.png"
             localStorage.setItem("enemy", JSON.stringify(Goblin))
             enemy = JSON.parse(localStorage.getItem("enemy"))
-            Ataques()
+            Ataques(selectedPj,enemy)
         })
     }
     else {
@@ -852,17 +853,17 @@ function Lugares() {
             imagen.src = "Imagenes/CuevaN.png"
             localStorage.setItem("enemy", JSON.stringify(Orco))
             enemy = JSON.parse(localStorage.getItem("enemy"))
-            Ataques()
+            Ataques(selectedPj,enemy)
         })
         botonb.addEventListener('click', (event) => {
             imagen.src = "Imagenes/TavernaAll.png"
-            Taberna()
+            Taberna(selectedPj)
         })
         botonc.addEventListener('click', (event) => {
             imagen.src = "Imagenes/BosqueN.png"
             localStorage.setItem("enemy", JSON.stringify(Goblin))
             enemy = JSON.parse(localStorage.getItem("enemy"))
-            Ataques()
+            Ataques(selectedPj,enemy)
         })
     }
 }
@@ -887,16 +888,16 @@ function selecPersonaje() {
     boton0.addEventListener('click', (event) => {
         selectedPj = localStorage.setItem("selected", JSON.stringify(Mago))
         JSON.parse(localStorage.getItem("selected"))
-        Lugares()
+        Lugares(selectedPj)
     })
 
     boton1.addEventListener('click', (event) => {
         selectedPj = localStorage.setItem("selected", JSON.stringify(Guerrero))
-        Lugares()
+        Lugares(selectedPj)
     })
     boton2.addEventListener('click', (event) => {
         selectedPj = localStorage.setItem("selected", JSON.stringify(Ninja))
-        Lugares()
+        Lugares(selectedPj)
     })
 }
 //Boton de reinicio
