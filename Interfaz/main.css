@@ -1,5 +1,6 @@
 body{
     background-color: rgb(40, 40, 40);
+    scale: 1;
 }
 
 @font-face {
@@ -35,7 +36,6 @@ body{
 
 }
 .botonselect {
-
     margin-left: auto;
     margin-right: auto;
     margin-top: auto;
@@ -61,15 +61,33 @@ body{
     color: rgb(223, 223, 210);
     cursor: pointer;
 }
-p { font: bold;
-    font-size: xx-large;
-    color: chartreuse;
+
+.botonataque {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    height: 70px;
+    width: 400px;
+    font-family: "fuenteBoton";
+    font-size: 50px;
+    color: rgb(47, 42, 39);
+    background-color: darkgoldenrod;
+}
+.botonataque:hover {
+    background-color: rgb(192, 71, 71);
+    color: rgb(223, 223, 210);
+    cursor: pointer;
+    
 }
 
-
-
-
 #Exit:hover{
+    background-color: rgb(99, 27, 208);
+    color: rgb(223, 223, 210);
+    cursor: pointer;
+}
+#Regresar:hover{
     background-color: rgb(99, 27, 208);
     color: rgb(223, 223, 210);
     cursor: pointer;
@@ -90,7 +108,123 @@ p { font: bold;
     background-color: darkgoldenrod;
 
 }
+#Regresar {
+    
+    display: block;
+    margin-left: 100;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    height: 70px;
+    width: 400px;
+    font-family: "fuenteBoton";
+    font-size: 25px;
+    color: rgb(47, 42, 39);
+    background-color: darkgoldenrod;
+
+}
 
 .hidden {
     display: none;
+}
+
+.Btaberna {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    height: 70px;
+    width: 400px;
+    font-family: "fuenteBoton";
+    font-size: 50px;
+    color: rgb(47, 42, 39);
+    background-color: darkgoldenrod;
+
+}
+
+.Btaberna:hover {
+    background-color: rgb(192, 71, 71);
+    color: rgb(223, 223, 210);
+    cursor: pointer;
+    
+}
+
+#retorno {
+    grid-template-columns: repeat(2, 400px);
+    grid-template-rows: 55px;
+    gap: 10px;
+}
+
+#comprar {
+    
+    grid-template-rows: 80px;
+    gap: 50px;
+    
+}
+.botoncomp {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    height: 70px;
+    width: 500px;
+    font-family: "fuenteBoton";
+    font-size: 29px;
+    color: rgb(47, 42, 39);
+    background-color: darkgoldenrod;
+    
+}
+
+.botoncomp:hover{
+    background-color: rgb(192, 71, 71);
+    color: rgb(223, 223, 210);
+    cursor: pointer;
+    
+}
+
+.apostarb {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    height: 70px;
+    width: 500px;
+    font-family: "fuenteBoton";
+    font-size: 29px;
+    color: rgb(47, 42, 39);
+    background-color: darkgoldenrod;
+    
+}
+
+.apostarb:hover{
+    background-color: rgb(192, 71, 71);
+    color: rgb(223, 223, 210);
+    cursor: pointer;
+    
+}
+
+.gitanab {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    height: 70px;
+    width: 500px;
+    font-family: "fuenteBoton";
+    font-size: 29px;
+    color: rgb(47, 42, 39);
+    background-color: darkgoldenrod;
+    
+}
+
+.gitanab:hover{
+    background-color: rgb(192, 71, 71);
+    color: rgb(223, 223, 210);
+    cursor: pointer;
+    
 }
