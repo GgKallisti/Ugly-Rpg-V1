@@ -228,3 +228,11 @@ body{
     cursor: pointer;
     
 }
+p {
+    font-family: 'Gill Sans';
+    font-size: 25px;
+    color: rgb(47, 42, 39);
+    background-color: darkgoldenrod;
+    text-align: center;
+    width: 1100px;
+}

@@ -33,7 +33,7 @@ const taberna = document.getElementById('taberna')
 const comprar = document.getElementById('comprar')
 const apostardiv = document.getElementById('apostar')
 const gitanadiv = document.getElementById('gitana')
-
+const parrafod = document.getElementById('parrafod')
 
 
 const boton0 = document.getElementById("0")
@@ -56,12 +56,27 @@ const diez = document.getElementById("diez")
 const veinte = document.getElementById("veinte")
 const botonreiniciar = document.getElementById("Exit")
 const botonregreso = document.getElementById("Regresar")
+let parrafo = document.getElementById('parrafo')
 
 let selectedPj
 let enemy
 let stage = 1
 
+
+let fortuna
+let zodiac = ["aries","taurus","cancer","leo","scorpio","virgo","capricorn","aquarius","libra"]
+let signo = zodiac[[Math.floor(Math.random() * zodiac.length)]]
+const Url = `https://aztro.sameerkumar.website/?sign=${signo}&day=today`;
+    fetch( Url, {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then(json => {
+         fortuna = json;
+        console.log(fortuna.description);
+    });
 //Aca empiezan las funciones 
+
 function atk(num1, num2) {
     let resultado = num1 - num2
     return resultado
@@ -251,6 +266,7 @@ function apostar() {
 }
 function Gitana() {
     stage = -1
+    imagen.src = "Imagenes/Gitana.png"
     taberna.style.display = "none"
     gitanadiv.classList.remove('hidden')
     gitanadiv.style.display = "grid"
@@ -300,9 +316,17 @@ function Gitana() {
         } 
 
     })
+    
     fortunab.addEventListener('click', (event) => {
+        if(selectedPj.oro > 10){
+        selectedPj.oro = selectedPj.oro - 10
+        parrafod.classList.remove('hidden')
+        parrafod.style.visibility = "visible"
+        parrafo.style.visibility = "visible"
+        let coso = fortuna.description
+        parrafo.innerText = coso
         Toastify({
-            text: "Aun no puedo mostrarte tu fortuna! ",
+            text: "Le das 10 monedas de oro a la gitana y escuchas atentamente mientras ella saca sus cartas... ",
             duration: 4000,
             newWindow: true,
             close: true,
@@ -316,7 +340,24 @@ function Gitana() {
             className: "info",
             style: { background: "linear-gradient(to right, #00b09b, #96c93d)", }
         }).showToast();
-
+    }
+    else {
+        Toastify({
+            text: "No tienes suficientes monedas para consultar por tu destino, Ojala no te cruces enemigos mas adelante..." ,
+            duration: 4000,
+            newWindow: true,
+            close: true,
+            gravity: "top",
+            position: "left",
+            stopOnFocus: true,
+            offset: {
+                x: 150, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+            },
+            className: "info",
+            style: { background: "linear-gradient(to right, #00b09b, #96c93d)", }
+        }).showToast();
+    }
     })
 
 }
@@ -924,7 +965,7 @@ botonregreso.addEventListener('click', (event) => {
     }
     else if (stage == 3) {
         Toastify({
-            text: "Hey! Volver atras es lo mismo que huir...",
+            text: "Hey! Volver atras aca es lo mismo que huir...",
             duration: 4000,
             newWindow: true,
             close: true,
@@ -955,6 +996,9 @@ botonregreso.addEventListener('click', (event) => {
     }
    else if (stage < 0) {
     stage = "T"
+    imagen.src = "Imagenes/TavernaAll.png"
+    parrafo.style.display = "none"
+    parrafod.style.display = "none"
     comprar.style.display = "none"
     apostardiv.style.display = "none"
     gitanadiv.style.display = "none"
